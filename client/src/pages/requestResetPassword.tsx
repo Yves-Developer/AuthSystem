@@ -47,7 +47,7 @@ const RequestResetPassword = () => {
       <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
         <Card className="p-5 w-92">
           <CardHeader>
-            <h2>Reset Link was sent!</h2>
+            <h2 className="text-2xl">Reset Link was sent!</h2>
           </CardHeader>
           <CardContent>
             <p>Password reset link was sent to your email.</p>
@@ -56,7 +56,9 @@ const RequestResetPassword = () => {
             </p>
           </CardContent>
           <CardFooter>
-            <Button>Back To Login</Button>
+            <a href="/login">
+              <Button>Back To Login</Button>
+            </a>
           </CardFooter>
         </Card>
       </div>
@@ -66,7 +68,7 @@ const RequestResetPassword = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <Card className="p-5 w-92">
         <CardHeader>
-          <h2>Request Reset New Password</h2>
+          <h2 className="text-lg">Request Reset New Password</h2>
         </CardHeader>
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           <Input
@@ -80,6 +82,15 @@ const RequestResetPassword = () => {
             Request Reset Password
           </Button>
         </form>
+        <CardFooter className="flex gap-3 items-center">
+          <a href="/login">
+            <Button variant="link">Login</Button>
+          </a>
+
+          <a href="/">
+            <Button variant="link">Sign Up</Button>
+          </a>
+        </CardFooter>
       </Card>
     </div>
   );

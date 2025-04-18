@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { axiosInstance } from "@/lib/AxiosInstance";
 import { Loader2 } from "lucide-react";
@@ -60,7 +60,7 @@ const SignUp = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <Card className="p-5 w-92">
         <CardHeader>
-          <h2>Sign Up to 3CodeVault</h2>
+          <h2 className="text-2xl">Sign Up to 3CodeVault</h2>
         </CardHeader>
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           <Input
@@ -87,6 +87,15 @@ const SignUp = () => {
             Sign Up
           </Button>
         </form>
+        <CardFooter className="flex gap-3 items-center">
+          <a href="/login">
+            <Button variant="link">Login</Button>
+          </a>
+
+          <a href="/forgot-password">
+            <Button variant="link">Forgot Password?</Button>
+          </a>
+        </CardFooter>
       </Card>
     </div>
   );

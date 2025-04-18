@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAppContext } from "@/context/DataLayer";
 import { axiosInstance } from "@/lib/AxiosInstance";
@@ -11,21 +11,12 @@ import { toast } from "sonner";
 const ResetPassword = () => {
   const navigate = useNavigate();
   const { token } = useParams();
-  const [email, setEmail] = useState<string>("");
   const [newpassword, setNewpassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { auth } = useAppContext();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email) {
-      toast("All input must be filled!");
-      return;
-    }
     if (!newpassword) {
-      toast("All input must be filled!");
-      return;
-    }
-    if (!email && !newpassword) {
       toast("All input must be filled!");
       return;
     }
@@ -33,7 +24,6 @@ const ResetPassword = () => {
     try {
       setLoading(true);
       const res = await axiosInstance.post("/auth/reset-password", {
-        email,
         token,
         newpassword,
       });
@@ -47,7 +37,6 @@ const ResetPassword = () => {
       console.log("error:", error?.response?.data?.message || error);
       toast(error?.response?.data?.message || "Server error");
     } finally {
-      setEmail("");
       setNewpassword("");
       setLoading(false);
     }
@@ -56,15 +45,9 @@ const ResetPassword = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <Card className="p-5 w-92">
         <CardHeader>
-          <h2>Reset New Password</h2>
+          <h2 className="text-2xl">Reset New Password</h2>
         </CardHeader>
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-          />
           <Input
             type="password"
             value={newpassword}
@@ -76,6 +59,15 @@ const ResetPassword = () => {
             Reset Password
           </Button>
         </form>
+        <CardFooter className="flex gap-3 items-center">
+          <a href="/login">
+            <Button variant="link">Login</Button>
+          </a>
+
+          <a href="/forgot-password">
+            <Button variant="link">Sign Up</Button>
+          </a>
+        </CardFooter>
       </Card>
     </div>
   );

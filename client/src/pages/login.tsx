@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useAppContext } from "@/context/DataLayer";
 import { axiosInstance } from "@/lib/AxiosInstance";
@@ -55,7 +55,7 @@ const Login = () => {
     <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <Card className="p-5 w-92">
         <CardHeader>
-          <h2>Login to 3CodeVault</h2>
+          <h2 className="text-2xl">Login to 3CodeVault</h2>
         </CardHeader>
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           <Input
@@ -75,6 +75,15 @@ const Login = () => {
             Login
           </Button>
         </form>
+        <CardFooter className="flex gap-3 items-center">
+          <a href="/">
+            <Button variant="link">Sign Up</Button>
+          </a>
+
+          <a href="/forgot-password">
+            <Button variant="link">Forgot Password?</Button>
+          </a>
+        </CardFooter>
       </Card>
     </div>
   );

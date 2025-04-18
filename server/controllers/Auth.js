@@ -194,10 +194,9 @@ export const sendResetPassword = async (req, res) => {
 // controll to actually reset password after verifying tokens
 export const resetPassword = async (req, res) => {
   //1. Get request body paload
-  const { email, token, newpassword } = req.body;
+  const { token, newpassword } = req.body;
   //2. check user by email and verify reset token and expiry date
   const user = await User.findOne({
-    email,
     resetToken: token,
     resetTokenExpiration: {
       $gte: new Date(),
